@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="us">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAgMAAADXB5lNAAAACVBMVEUzMzP//OD/bADOubloAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4gseFwwFlfgP4gAAADpJREFUOMtjYKAGCEUB5AmsoprAKsoEQGwwARIlVwACQKKrKBSAALIFQhF4qAsg8Ye8AFXilmIBygEAiYStDJnw5qAAAAAASUVORK5CYII=">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABhGlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw1AUhU9TtSIVB4uIOGSoThZERRy1CkWoEGqFVh1MXvoHTRqSFBdHwbXg4M9i1cHFWVcHV0EQ/AFxdXFSdJES70sKLWJ88Hgf571zuO9eQKiXmWZ1jAOabpupRFzMZFfF0CvC6MIAgEGZWcacJCXhu77uEeDnXYxn+b/7c/WqOYsBAZF4lhmmTbxBPL1pG5z3iSOsKKvE58RjJhVI/Mh1xeM3zgWXBZ4ZMdOpeeIIsVhoY6WNWdHUiKeIo6qmU76Q8VjlvMVZK1dZs07+w3BOX1nmOu1hJLCIJUgQoaCKEsqwEaNTJ8VCiu7jPv4h1y+RSyFXCYwcC6hAg+z6wWfwu7dWfnLCSwrHgc4Xx/kYAUK7QKPmON/HjtM4AYLPwJXe8lfqwMwn6bWWFj0C+raBi+uWpuwBlzs07idDNmVXCtIW8nng/YzGlAX6b4GeNa9vzXucPgBp6lXyBjg4BEYLlL3u8+/u9r79+6bZvx8R0HKADAJUpwAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+cMBhYCOCWRNpkAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAACyUlEQVRYw+2Xz0sVURTHP+fe+aGpT5/v2YMnkQSVixYVRBAJLVtLUIF/QIv+jNbRokVuok2EgVtpmWupaCdSUGGp+CuL9+bNzJs5LcZ69kObZ2kt/MKFyx3m3s+cc+acc+FAB/rHkh8X9OxZYXHREgSGRsPg+wbXFR0acuXNmwJraw4DA0IcG9bXDQCFQkpnZ8rSktLTk+jw8Gd59y6kXlcajZSuLsX3E3p7E5md1W0BtFSqUKuNoXoO1SMkyQCOUyCKugFBVbYD/7pF9lQUVcX368TxJxxnBWPmUX1OR8dD2dh4+/Ob5fIxdZyXComC7tFI1dpXWiye/vFwq657fw8P/n647pSWyy5A5kPX7UD18r5FXpKM4HmlFkCaDtJsFvcNIE096vUTLYAwHPw2/53KZRgbg2r1TxAMzeZgCyCKSrkBqlW4dQseP4br16G7e7cAW1wAfbkBAHwfLlyAe/fgwQO4eBGMaQ9Ata8FYK3XfgoTKBRgdBQmJuD2bTh5MlvPI9f1tsaAt0Ny+T1ItQo3b8LkJNy4kc8aUeTpmTNi/lpkq0IcQxhm81yOMDib5giJIt2VFdIU5uczN4yPw+vXeV0QyrNn6myaMf6Wx9v54o0NePIE7tyBmZkMJn8yioFNCzSb67kBVKHRgOlpuHsXpqYgCNq2G6rrrT2LxUsKYa483t+veuWKaqXyJ/Ug1p6eay2AavW4igT7Vowg1P7+kdZvGATvsXZ132qBMSGOM7e1GoZYO9V2IO5W1j5Fde372CoWj6rIzB43JIkaM6u9vad+3ZIdOlQiTa+SJOcROQKUSZJurO0jijxEZLM12z4rQtaOOU6MyEdEasAKqvNY+wJrH0mt9oGdejutVCxxbElTodEweJ5QKIgePuxIEHQxN+ej2gIRyfrAoaFIS6WaLCzErK4q1mbDmBRrE1leTg7uAQf67/QF2EgNdajwWhUAAAAASUVORK5CYII=">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 
 <title>YouTube Video Browser</title>
 
 <style>
-    .page {
-        display: none;
-    }
+.page {
+    display: none;
+}
 </style>
 
 <div class="section">
 	<h1 class="title">YouTube Video Browser</h1>
-    <div class="column"><input class="input" is="search-input" placeholder="Enter your search term" autofocus></div>
+    <div class="column"><search-input><input class="input" placeholder="Enter your search term" autofocus></search-input></div>
 </div>
 
 <search-page class="page section" style="display: block">search...</search-page>
-<video-page class="page section">video</video-page>
 
 
 <script src="config.js"></script>
@@ -32,7 +31,7 @@
 // Pages
 
 // Elements
-class SearchInput extends HTMLInputElement {
+class SearchInput extends HTMLElement {
     static observedAttributes = ["search-term"];
 
     constructor() {
@@ -46,7 +45,7 @@ class SearchInput extends HTMLInputElement {
         // @TODO call API, return results for selection
     }
 }
-customElements.define("search-input", SearchInput, { extends: "input" });
+customElements.define("search-input", SearchInput);
 
 class VideoDetails extends HTMLElement {
     constructor() {
@@ -114,20 +113,44 @@ function get_search_results(search_term, order_by) {
 
     get_data("https://youtube.googleapis.com/youtube/v3/search", params, function(r) {
         console.log(r);
+
+        let video_ids = [];
+        for (item of r.items) {
+            console.log(
+                "Video ID: " + item.id.videoId,
+                "Title: " + item.snippet.title,
+                "Description: " + item.snippet.description,
+                "Thumbnail: " + item.snippet.thumbnails.default.url,
+            );
+            video_ids.push(item.id.videoId);
+        }
+
+        // @TODO render videos without number of comments
+
+        // get statistics for videos
+        get_videos_stats(video_ids);
     },
     function(r) {
         console.error(r);
     });
 }
 
-function get_video(video_id) {
+function get_videos_stats(video_ids) {
     let params = {
-        part: "snippet contentDetails statistics",
-        id: video_id
+        part: ["statistics"],
+        id: video_ids
     };
 
     get_data("https://youtube.googleapis.com/youtube/v3/videos", params, function(r) {
-        console.log(r);
+        console.log("Updating video stats...", r);
+
+        // @TODO: update listed videos with new-found stats
+        for (item of r.items) {
+            console.log(
+                "Video ID: " + item.id,
+                "Number of comments: " + item.statistics.commentCount,
+            );
+        }
     },
     function(r) {
         console.error(r);

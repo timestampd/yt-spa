@@ -2,8 +2,7 @@
 
 ## Requirements
 
-- [ ] Front page with prominent Search box, top header
-- [ ] Search form: autocomplete, preview youtube cover image
+- [ ] Search form: preview youtube cover image
 - [ ] On search, search results page  (https://developers.google.com/youtube/v3/docs/search)
   - [ ] Sort results by date, rating, relevance
 - [ ] On selection, Video page (https://developers.google.com/youtube/v3/docs/videos/list?apix_params=%7B%22part%22%3A%5B%22snippet%2CcontentDetails%2Cstatistics%22%5D%2C%22id%22%3A%5B%22Ks-_Mh1QhMc%22%5D%7D)
@@ -18,7 +17,9 @@ Note: I started with ideas from https://codepen.io/jorgebucaran/pen/ZeByKv, http
 
 ### Extension Ideas
 
-- compression/separation/CI/CD
+- Loading indicator
+- Pagination
+- Compression/separation/CI/CD
 - Testing
 - Video player instead of redirect to YouTube for playback
 - Login

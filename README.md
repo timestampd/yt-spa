@@ -37,7 +37,7 @@ Note: I started with ideas from https://codepen.io/jorgebucaran/pen/ZeByKv, http
 
 # Setup
 
-1. Update `GOOGLE_API_KEY` in `app.html`.
+1. Update `GOOGLE_API_KEY` in `config.js`.
 1. Open `app.html` in a browser.
 
 

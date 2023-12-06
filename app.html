@@ -23,12 +23,8 @@
 <video-page class="page section">video</video-page>
 
 
+<script src="config.js"></script>
 <script>
-////////////////////////
-///    Variables
-////////////////////////
-const GOOGLE_API_KEY = "CHANGETHIS";
-
 ////////////////////////
 ///    Components
 ////////////////////////
@@ -141,7 +137,7 @@ function get_video(video_id) {
 
 // Utilities
 function query_params(params) {
-    params.key = GOOGLE_API_KEY;
+    params.key = config.GOOGLE_API_KEY;
     return '?' + new URLSearchParams(params).toString();
 }
 

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAAgMAAADXB5lNAAAACVBMVEUzMzP//OD/bADOubloAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4gseFwwFlfgP4gAAADpJREFUOMtjYKAGCEUB5AmsoprAKsoEQGwwARIlVwACQKKrKBSAALIFQhF4qAsg8Ye8AFXilmIBygEAiYStDJnw5qAAAAAASUVORK5CYII=">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+<title>YouTube Video Browser</title>
+
+<style>
+    .page {
+        display: none;
+    }
+</style>
+
+<div class="section">
+	<h1 class="title">YouTube Video Browser</h1>
+    <div class="column"><input class="input" is="search-input" placeholder="Enter your search term" autofocus></div>
+</div>
+
+<search-page class="page section" style="display: block">search...</search-page>
+<video-page class="page section">video</video-page>
+
+
+<script>
+////////////////////////
+///    Variables
+////////////////////////
+const GOOGLE_API_KEY = "CHANGETHIS";
+
+////////////////////////
+///    Components
+////////////////////////
+
+// Pages
+
+// Elements
+class SearchInput extends HTMLInputElement {
+    static observedAttributes = ["search-term"];
+
+    constructor() {
+        super();
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        console.log(
+            `Attribute ${name} has changed from ${oldValue} to ${newValue}.`,
+        );
+        // @TODO call API, return results for selection
+    }
+}
+customElements.define("search-input", SearchInput, { extends: "input" });
+
+class VideoDetails extends HTMLElement {
+    constructor() {
+        super();
+    }
+    // @TODO
+}
+customElements.define("video-details", VideoDetails);
+
+class VideoList extends HTMLElement {
+    constructor() {
+        super();
+    }
+    // @TODO
+}
+customElements.define("video-list", VideoList);
+
+class VideoListItem extends HTMLElement {
+    constructor() {
+        super();
+    }
+    // @TODO
+}
+customElements.define("video-list-item", VideoListItem);
+
+/***********************
+    Functions
+***********************/
+
+////    Page Management
+
+function show_page_search() {
+    show_page("search");
+}
+function show_page_video(id) {
+    get_video(id);
+
+    show_page("video");
+}
+function hide_pages() {
+    $(".page").hide();
+}
+function show_page(which) {
+    hide_pages();
+    $("#" + which).show();
+}
+
+
+////    API Calls
+
+// Endpoints
+function get_search_results(search_term, order_by) {
+    if (!order_by) {
+        order_by = "date";
+        // date, rating, relevance
+    }
+
+    let params = {
+        q: search_term,
+        order: order_by,
+        maxResults: 10,
+        part: "snippet",
+        type: "video"
+    };
+
+    get_data("https://youtube.googleapis.com/youtube/v3/search", params, function(r) {
+        console.log(r);
+    },
+    function(r) {
+        console.error(r);
+    });
+}
+
+function get_video(video_id) {
+    let params = {
+        part: "snippet contentDetails statistics",
+        id: video_id
+    };
+
+    get_data("https://youtube.googleapis.com/youtube/v3/videos", params, function(r) {
+        console.log(r);
+    },
+    function(r) {
+        console.error(r);
+    });
+}
+
+
+// Utilities
+function query_params(params) {
+    params.key = GOOGLE_API_KEY;
+    return '?' + new URLSearchParams(params).toString();
+}
+
+function get_data(url, params, success_fn, failure_fn) {
+    $.ajax({
+        url: url + query_params(params),
+        method: "GET",
+        dataType: "json",
+        success: success_fn,
+        error: failure_fn
+    });
+}
+</script>

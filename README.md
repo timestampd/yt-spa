@@ -17,7 +17,7 @@ Note: I started with ideas from https://codepen.io/jorgebucaran/pen/ZeByKv, http
 
 ### Extension Ideas
 
-- Loading indicator
+- Presentation for different loading states
 - Pagination
 - Compression/separation/CI/CD
 - Testing
@@ -30,10 +30,8 @@ Note: I started with ideas from https://codepen.io/jorgebucaran/pen/ZeByKv, http
 
 ## Components
 
-- Search form
-- Video list
-  - Video list item
-- Video details
+- Search page
+- Video item
 
 
 # Setup

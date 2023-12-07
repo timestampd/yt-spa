@@ -91,9 +91,14 @@ class SearchPage extends HTMLElement {
 
     updateTotalCount(newCount) {
         const line = this.shadowRoot.querySelector("#results-line");
-        const count = this.shadowRoot.querySelector("#total-count");
-        count.innerHTML = newCount;
-        line.style.visibility = "visible";
+
+        if (newCount === "") {
+            line.style.visibility = "hidden";
+        } else {
+            const count = this.shadowRoot.querySelector("#total-count");
+            count.innerHTML = newCount;
+            line.style.visibility = "visible";
+        }
     }
 
     populate(event) {
@@ -155,6 +160,7 @@ customElements.define("video-item", VideoItem);
 ***********************/
 
 ////    Page Management
+////    Note: Area for future development.
 
 function show_page_search() {
     show_page("search");
@@ -185,17 +191,23 @@ function get_search_results(search_term, order) {
         type: "video"
     };
 
+
+    const searchPage = document.querySelector("#search-results-page");
+    const searchPageSlot = searchPage.shadowRoot.querySelector("slot");
+
+    // clear old results before searching
+    searchPage.setAttribute("total-count", "");
+    searchPageSlot.innerHTML = '';
+
     get_data("https://youtube.googleapis.com/youtube/v3/search", params, function(r) {
         console.log("Search returned", r);
 
         // update total videos found
         const totalCount = r.pageInfo.totalResults;
-        const searchPage = document.querySelector("#search-results-page");
         searchPage.setAttribute("total-count", totalCount);
-        // update videos returned in this page
-        const searchPageSlot = searchPage.shadowRoot.querySelector("slot");
 
         let videoIds = [];
+        // add videos returned in this page
         for (item of r.items) {
             const videoItem = {
                 id: item.id.videoId,

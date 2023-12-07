@@ -16,10 +16,23 @@
 
 <div class="section">
 	<h1 class="title">YouTube Video Browser</h1>
-    <div class="column"><search-input><input class="input" placeholder="Enter your search term" autofocus></search-input></div>
+    <form onsubmit="return false;">
+    <div class="columns">
+        <div class="column is-four-fifths">
+            <input class="input" id="search-input" placeholder="Enter your search term" autofocus>
+        </div>
+        <div class="column">
+            <select id="search-order" class="select">
+                <option value="date">Date</option>
+                <option value="rating">Rating</option>
+                <option value="relevance" selected>Relevance</option>
+            </select>
+        </div>
+    </div>
+    </form>
 </div>
 
-<search-page id="the-search-page" class="page section" style="display: block"></search-page>
+<search-page id="search-results-page" class="page section" style="display: block"></search-page>
 
 <template id="template-search-page">
     <style>
@@ -28,7 +41,7 @@
         }
     </style>
     <p id="results-line" class="subtitle">Showing <span id="current-count">0</span> results of <span id="total-count">0</span></p>
-    <div><slot></slot></div>
+    <ul><slot></slot></ul>
 </template>
 <template id="template-video-item">
     <style>
@@ -47,6 +60,11 @@
         </p>
         </p>
     </li>
+</template>
+<template id="template-search-input">
+    <form>
+        <input class="input" placeholder="Enter your search term" autofocus>
+    </form>
 </template>
 <script src="config.js"></script>
 <script>
@@ -153,15 +171,15 @@ function show_page(which) {
 ////    API Calls
 
 // Endpoints
-function get_search_results(search_term, order_by) {
-    if (!order_by) {
-        order_by = "date";
+function get_search_results(search_term, order) {
+    if (!order) {
+        order = "relevance";
         // date, rating, relevance
     }
 
     let params = {
         q: search_term,
-        order: order_by,
+        order: order,
         maxResults: 10,
         part: "snippet",
         type: "video"
@@ -172,7 +190,7 @@ function get_search_results(search_term, order_by) {
 
         // update total videos found
         const totalCount = r.pageInfo.totalResults;
-        const searchPage = document.querySelector("#the-search-page");
+        const searchPage = document.querySelector("#search-results-page");
         searchPage.setAttribute("total-count", totalCount);
         // update videos returned in this page
         const searchPageSlot = searchPage.shadowRoot.querySelector("slot");
@@ -229,7 +247,7 @@ function get_videos_stats(videoIds) {
     get_data("https://youtube.googleapis.com/youtube/v3/videos", params, function(r) {
         console.log("Updating video stats...", r);
 
-        const searchPageShadowRoot = document.querySelector("#the-search-page").shadowRoot;
+        const searchPageShadowRoot = document.querySelector("#search-results-page").shadowRoot;
 
         // update listed videos with new-found stats
         for (item of r.items) {
@@ -258,4 +276,62 @@ function get_data(url, params, success_fn, failure_fn) {
         error: failure_fn
     });
 }
+
+/***********************
+    Events
+***********************/
+let lastKeyUpTime;
+let lastSearchTimeout;
+let lastSearchTerm = "";
+let searchesRun = 0;
+
+const searchOrder = document.getElementById("search-order");
+const searchInput = document.getElementById("search-input");
+
+function handleSearch(currentSearchTerm, currentOrderBy, ignoreTimeout) {
+    lastKeyUpTime = Date.now();
+
+    if (lastSearchTerm === currentSearchTerm && lastOrderBy === currentOrderBy) {
+        return;
+    }
+
+    clearTimeout(lastSearchTimeout);
+
+    console.log(currentOrderBy, currentSearchTerm);
+
+    if (ignoreTimeout) {
+        get_search_results(currentSearchTerm, currentOrderBy);
+        return;
+    }
+
+    lastSearchTimeout = setTimeout(() => {
+        console.log('?');
+        lastSearchTerm = currentSearchTerm;
+        lastOrderBy = currentOrderBy;
+        if (Date.now() - lastKeyUpTime > 200) {
+            console.log('Searching!');
+            get_search_results(currentSearchTerm);
+            searchesRun++;
+            console.log('Searches: ', searchesRun);
+        }
+    }, 650);
+}
+
+searchInput.addEventListener("keyup", (e) => {
+    e.preventDefault();
+
+    let currentSearchTerm = e.currentTarget.value.trim();
+    let currentOrderBy = searchOrder.value;
+
+    handleSearch(currentSearchTerm, currentOrderBy);
+});
+
+searchOrder.addEventListener("change", (e) => {
+    e.preventDefault();
+
+    let currentSearchTerm = searchInput.value.trim();
+    let currentOrderBy = e.currentTarget.value;
+
+    handleSearch(currentSearchTerm, currentOrderBy, true);
+});
 </script>

@@ -19,9 +19,35 @@
     <div class="column"><search-input><input class="input" placeholder="Enter your search term" autofocus></search-input></div>
 </div>
 
-<search-page class="page section" style="display: block">search...</search-page>
+<search-page id="the-search-page" class="page section" style="display: block"></search-page>
 
+<template id="template-search-page">
+    <style>
+        #results-line {
+            visibility: hidden;
+        }
+    </style>
+    <p id="results-line" class="subtitle">Showing <span id="current-count">0</span> results of <span id="total-count">0</span></p>
+    <div><slot></slot></div>
+</template>
+<template id="template-video-item">
+    <style>
+        #comment-count-line {
+            visibility: hidden;
+        }
+    </style>
 
+    <li>
+        <slot name="preview"></slot>
+        <p><slot name="title">Unknown</slot></p>
+
+        <p>
+            <slot name="description"></slot>
+            <br><span id="comment-count-line">Comments: <span id="comment-count"></span></span>
+        </p>
+        </p>
+    </li>
+</template>
 <script src="config.js"></script>
 <script>
 ////////////////////////
@@ -30,46 +56,81 @@
 
 // Pages
 
+class SearchPage extends HTMLElement {
+    static get observedAttributes() {
+        return ["total-count"];
+    }
+
+    constructor() {
+        super();
+    }
+
+    attributeChangedCallback(attrName, oldValue, newValue) {
+        if (attrName === "total-count") {
+            this.updateTotalCount(newValue);
+        }
+    }
+
+    updateTotalCount(newCount) {
+        const line = this.shadowRoot.querySelector("#results-line");
+        const count = this.shadowRoot.querySelector("#total-count");
+        count.innerHTML = newCount;
+        line.style.visibility = "visible";
+    }
+
+    populate(event) {
+        const videoNumber = this.shadowRoot.querySelectorAll("video-item").length;
+        const counter = this.shadowRoot.querySelector("#current-count");
+        counter.innerHTML = videoNumber;
+    }
+
+    connectedCallback() {
+        const shadow = this.attachShadow({ mode: "open" });
+        const template = document.getElementById('template-search-page');
+        const node = document.importNode(template.content, true);
+        shadow.appendChild(node);
+
+        let slot = this.shadowRoot.querySelector("slot");
+        slot.addEventListener("slotchange", (e) => this.populate(e));
+    }
+}
+customElements.define("search-page", SearchPage);
+
 // Elements
-class SearchInput extends HTMLElement {
-    static observedAttributes = ["search-term"];
+
+class VideoItem extends HTMLElement {
+    static get observedAttributes() {
+        return ["comment-count"];
+    }
 
     constructor() {
         super();
     }
 
-    attributeChangedCallback(name, oldValue, newValue) {
-        console.log(
-            `Attribute ${name} has changed from ${oldValue} to ${newValue}.`,
-        );
-        // @TODO call API, return results for selection
+    updateCommentCount(newCount) {
+        const line = this.shadowRoot.querySelector("#comment-count-line");
+        const count = this.shadowRoot.querySelector("#comment-count");
+        count.innerHTML = newCount;
+        line.style.visibility = "visible";
     }
-}
-customElements.define("search-input", SearchInput);
 
-class VideoDetails extends HTMLElement {
-    constructor() {
-        super();
-    }
-    // @TODO
-}
-customElements.define("video-details", VideoDetails);
+    connectedCallback() {
+        const shadow = this.attachShadow({ mode: "open" });
+        const template = document.getElementById('template-video-item');
 
-class VideoList extends HTMLElement {
-    constructor() {
-        super();
+        const node = document.importNode(template.content, true);
+        shadow.appendChild(node);
     }
-    // @TODO
-}
-customElements.define("video-list", VideoList);
 
-class VideoListItem extends HTMLElement {
-    constructor() {
-        super();
+    attributeChangedCallback(attrName, oldValue, newValue) {
+        this[attrName] = this.hasAttribute(attrName);
+
+        if (attrName === "comment-count") {
+            this.updateCommentCount(newValue);
+        }
     }
-    // @TODO
 }
-customElements.define("video-list-item", VideoListItem);
+customElements.define("video-item", VideoItem);
 
 /***********************
     Functions
@@ -79,11 +140,6 @@ customElements.define("video-list-item", VideoListItem);
 
 function show_page_search() {
     show_page("search");
-}
-function show_page_video(id) {
-    get_video(id);
-
-    show_page("video");
 }
 function hide_pages() {
     $(".page").hide();
@@ -112,48 +168,77 @@ function get_search_results(search_term, order_by) {
     };
 
     get_data("https://youtube.googleapis.com/youtube/v3/search", params, function(r) {
-        console.log(r);
+        console.log("Search returned", r);
 
-        let video_ids = [];
+        // update total videos found
+        const totalCount = r.pageInfo.totalResults;
+        const searchPage = document.querySelector("#the-search-page");
+        searchPage.setAttribute("total-count", totalCount);
+        // update videos returned in this page
+        const searchPageSlot = searchPage.shadowRoot.querySelector("slot");
+
+        let videoIds = [];
         for (item of r.items) {
-            console.log(
-                "Video ID: " + item.id.videoId,
-                "Title: " + item.snippet.title,
-                "Description: " + item.snippet.description,
-                "Thumbnail: " + item.snippet.thumbnails.default.url,
-            );
-            video_ids.push(item.id.videoId);
+            const videoItem = {
+                id: item.id.videoId,
+                title: item.snippet.title,
+                description: item.snippet.description,
+                thumbnail_url: item.snippet.thumbnails.default.url,
+            };
+
+            // render videos without number of comments
+            const video = document.createElement('video-item');
+            video.setAttribute("id", `video-${videoItem.id}`);
+
+            const titleSlot = document.createElement('span');
+            titleSlot.innerHTML = `<a href="https://www.youtube.com/watch?v=${videoItem.id}" target="_blank">${videoItem.title}</a>`;
+            titleSlot.setAttribute("slot", "title");
+            video.append(titleSlot);
+            if (videoItem.description) {
+                const descriptionSlot = document.createElement('span');
+                descriptionSlot.innerHTML = videoItem.description;
+                descriptionSlot.setAttribute("slot", "description");
+                video.append(descriptionSlot);
+            }
+            const previewSlot = document.createElement('img');
+            previewSlot.setAttribute("src", videoItem.thumbnail_url);
+            previewSlot.setAttribute("width", 100);
+            previewSlot.setAttribute("height", 60);
+            previewSlot.setAttribute("slot", "preview");
+            video.append(previewSlot);
+            searchPageSlot.append(video);
+
+            // add to list for later stats lookup
+            videoIds.push(videoItem.id);
         }
 
-        // @TODO render videos without number of comments
-
         // get statistics for videos
-        get_videos_stats(video_ids);
+        get_videos_stats(videoIds);
     },
     function(r) {
-        console.error(r);
+        console.error("Search error", r);
     });
 }
 
-function get_videos_stats(video_ids) {
+function get_videos_stats(videoIds) {
     let params = {
         part: ["statistics"],
-        id: video_ids
+        id: videoIds
     };
 
     get_data("https://youtube.googleapis.com/youtube/v3/videos", params, function(r) {
         console.log("Updating video stats...", r);
 
-        // @TODO: update listed videos with new-found stats
+        const searchPageShadowRoot = document.querySelector("#the-search-page").shadowRoot;
+
+        // update listed videos with new-found stats
         for (item of r.items) {
-            console.log(
-                "Video ID: " + item.id,
-                "Number of comments: " + item.statistics.commentCount,
-            );
+            const videoItem = searchPageShadowRoot.querySelector(`#video-${item.id}`);
+            videoItem.setAttribute("comment-count", item.statistics.commentCount);
         }
     },
     function(r) {
-        console.error(r);
+        console.error("Stats error", r);
     });
 }
 

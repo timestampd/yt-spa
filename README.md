@@ -38,7 +38,8 @@ Note: I started with ideas from https://codepen.io/jorgebucaran/pen/ZeByKv, http
 
 # Setup
 
-1. Update `GOOGLE_API_KEY` in `config.js`.
+1. Retrieve a Google API key from https://console.cloud.google.com/apis/credentials.
+1. Copy `config-example.js` to `config.js` and update the `GOOGLE_API_KEY` in it.
 1. Open `app.html` in a browser.
 
 

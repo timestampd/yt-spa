@@ -196,13 +196,15 @@ function get_search_results(search_term, order) {
     const searchPageSlot = searchPage.shadowRoot.querySelector("slot");
 
     // clear old results before searching
-    searchPage.setAttribute("total-count", "");
-    searchPageSlot.innerHTML = '';
+    clearSearchResults();
+
+    // status searching
+    searchInput.classList = "input is-info";
 
     get_data("https://youtube.googleapis.com/youtube/v3/search", params, function(r) {
         console.log("Search returned", r);
 
-        // update search color
+        // status success
         searchInput.classList = "input is-success";
 
         // update total videos found
@@ -249,7 +251,7 @@ function get_search_results(search_term, order) {
         get_videos_stats(videoIds);
     },
     function(r) {
-        // update search color
+        // status failure
         searchInput.classList = "input is-danger";
         console.error("Search error", r);
     });
@@ -273,8 +275,6 @@ function get_videos_stats(videoIds) {
         }
     },
     function(r) {
-        // update search color
-        searchInput.classList = "input is-danger";
         console.error("Stats error", r);
     });
 }
@@ -307,9 +307,27 @@ let searchesRun = 0;
 const searchOrder = document.getElementById("search-order");
 const searchInput = document.getElementById("search-input");
 
+function clearSearchResults() {
+    // search status inactive
+    searchInput.classList = "input";
+
+    const searchPage = document.querySelector("#search-results-page");
+    const searchPageSlot = searchPage.shadowRoot.querySelector("slot");
+    searchPage.setAttribute("total-count", "");
+    searchPageSlot.innerHTML = '';
+}
+
 function handleSearch(currentSearchTerm, currentOrderBy, ignoreTimeout) {
     lastKeyUpTime = Date.now();
 
+    if (currentSearchTerm === "") {
+        clearSearchResults();
+        return;
+    }
+
+    // search status indeterminate
+    searchInput.classList = "input is-info";
+    
     if (lastSearchTerm === currentSearchTerm && lastOrderBy === currentOrderBy) {
         return;
     }
@@ -322,9 +340,6 @@ function handleSearch(currentSearchTerm, currentOrderBy, ignoreTimeout) {
         get_search_results(currentSearchTerm, currentOrderBy);
         return;
     }
-
-    // update search color
-    searchInput.classList = "input";
 
     lastSearchTimeout = setTimeout(() => {
         console.log('?');

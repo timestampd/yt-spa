@@ -202,6 +202,9 @@ function get_search_results(search_term, order) {
     get_data("https://youtube.googleapis.com/youtube/v3/search", params, function(r) {
         console.log("Search returned", r);
 
+        // update search color
+        searchInput.classList = "input is-success";
+
         // update total videos found
         const totalCount = r.pageInfo.totalResults;
         searchPage.setAttribute("total-count", totalCount);
@@ -246,6 +249,8 @@ function get_search_results(search_term, order) {
         get_videos_stats(videoIds);
     },
     function(r) {
+        // update search color
+        searchInput.classList = "input is-danger";
         console.error("Search error", r);
     });
 }
@@ -268,6 +273,8 @@ function get_videos_stats(videoIds) {
         }
     },
     function(r) {
+        // update search color
+        searchInput.classList = "input is-danger";
         console.error("Stats error", r);
     });
 }
@@ -315,6 +322,9 @@ function handleSearch(currentSearchTerm, currentOrderBy, ignoreTimeout) {
         get_search_results(currentSearchTerm, currentOrderBy);
         return;
     }
+
+    // update search color
+    searchInput.classList = "input";
 
     lastSearchTimeout = setTimeout(() => {
         console.log('?');

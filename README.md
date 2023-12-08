@@ -21,6 +21,7 @@ I started with ideas from https://codepen.io/jorgebucaran/pen/ZeByKv, https://gi
 - Compression/separation/CI/CD
 - Testing
 - More explicit error handling
+- Reduce bandwidth by specifying `filter` fields for API calls
 - Keyboard shortcuts
 - Embedded video player instead of redirect to YouTube for playback
 - Login

@@ -16,6 +16,7 @@
 
 <div class="section">
 	<h1 class="title">YouTube Video Browser</h1>
+
     <form onsubmit="return false;">
     <div class="columns">
         <div class="column is-four-fifths">
@@ -34,23 +35,35 @@
 
 <search-page id="search-results-page" class="page section" style="display: block"></search-page>
 
+<!-------------------
+    Templates
+-------------------->
 <template id="template-search-page">
     <style>
         #results-line {
             visibility: hidden;
         }
     </style>
-    <p id="results-line" class="subtitle">Showing <span id="current-count">0</span> results of <span id="total-count">0</span></p>
-    <ul><slot></slot></ul>
+    <p id="results-line" class="subtitle">
+        Showing <span id="current-count">0</span> results of <span id="total-count">0</span>
+    </p>
+    <slot></slot>
 </template>
 <template id="template-video-item">
     <style>
         #comment-count-line {
             visibility: hidden;
         }
+        div {
+            padding: .3rem;
+            margin: .3rem;
+        }
+        div:hover {
+            background-color: #eee;
+        }
     </style>
 
-    <li>
+    <div>
         <slot name="preview"></slot>
         <p><slot name="title">Unknown</slot></p>
 
@@ -58,14 +71,14 @@
             <slot name="description"></slot>
             <br><span id="comment-count-line">Comments: <span id="comment-count"></span></span>
         </p>
-        </p>
-    </li>
+    </div>
 </template>
 <template id="template-search-input">
     <form>
         <input class="input" placeholder="Enter your search term" autofocus>
     </form>
 </template>
+
 <script src="config.js"></script>
 <script>
 ////////////////////////
@@ -237,8 +250,8 @@ function get_search_results(search_term, order) {
             }
             const previewSlot = document.createElement('img');
             previewSlot.setAttribute("src", videoItem.thumbnail_url);
-            previewSlot.setAttribute("width", 100);
-            previewSlot.setAttribute("height", 60);
+            previewSlot.setAttribute("width", 120);
+            previewSlot.setAttribute("height", 90);
             previewSlot.setAttribute("slot", "preview");
             video.append(previewSlot);
             searchPageSlot.append(video);
@@ -296,17 +309,6 @@ function get_data(url, params, success_fn, failure_fn) {
     });
 }
 
-/***********************
-    Events
-***********************/
-let lastKeyUpTime;
-let lastSearchTimeout;
-let lastSearchTerm = "";
-let searchesRun = 0;
-
-const searchOrder = document.getElementById("search-order");
-const searchInput = document.getElementById("search-input");
-
 function clearSearchResults() {
     // search status inactive
     searchInput.classList = "input";
@@ -316,6 +318,16 @@ function clearSearchResults() {
     searchPage.setAttribute("total-count", "");
     searchPageSlot.innerHTML = '';
 }
+
+/***********************
+    Events
+***********************/
+let lastKeyUpTime;
+let lastSearchTimeout;
+let lastSearchTerm = "";
+
+const searchOrder = document.getElementById("search-order");
+const searchInput = document.getElementById("search-input");
 
 function handleSearch(currentSearchTerm, currentOrderBy, ignoreTimeout) {
     lastKeyUpTime = Date.now();
@@ -334,22 +346,16 @@ function handleSearch(currentSearchTerm, currentOrderBy, ignoreTimeout) {
 
     clearTimeout(lastSearchTimeout);
 
-    console.log(currentOrderBy, currentSearchTerm);
-
     if (ignoreTimeout) {
         get_search_results(currentSearchTerm, currentOrderBy);
         return;
     }
 
     lastSearchTimeout = setTimeout(() => {
-        console.log('?');
         lastSearchTerm = currentSearchTerm;
         lastOrderBy = currentOrderBy;
         if (Date.now() - lastKeyUpTime > 200) {
-            console.log('Searching!');
             get_search_results(currentSearchTerm);
-            searchesRun++;
-            console.log('Searches: ', searchesRun);
         }
     }, 650);
 }

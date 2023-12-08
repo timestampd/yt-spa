@@ -2,26 +2,27 @@
 
 ## Requirements
 
-- [ ] Search form: preview youtube cover image
-- [ ] On search, search results page  (https://developers.google.com/youtube/v3/docs/search)
-  - [ ] Sort results by date, rating, relevance
-- [ ] On selection, Video page (https://developers.google.com/youtube/v3/docs/videos/list?apix_params=%7B%22part%22%3A%5B%22snippet%2CcontentDetails%2Cstatistics%22%5D%2C%22id%22%3A%5B%22Ks-_Mh1QhMc%22%5D%7D)
-  - [ ] Title links to video on YouTube
-  - [ ] Thumbnail
-  - [ ] Description
-  - [ ] Display total number of comments on each video
-- [ ] Use developer app credentials so sign-in is not required?
+- [x] Search form: preview youtube cover image
+- [x] On search, search results page  (https://developers.google.com/youtube/v3/docs/search)
+  - [x] Sort results by date, rating, relevance
+  - [x] Title links to video on YouTube
+  - [x] Thumbnail
+  - [x] Description
+  - [x] Display total number of comments on each video
+- [x] Use developer app credentials so sign-in is not required?
 - [ ] Dev/prod setups
 
-Note: I started with ideas from https://codepen.io/jorgebucaran/pen/ZeByKv, https://github.com/loteoo/hyperapp-starter, https://codepen.io/jorgebucaran/pen/ZeByKv.
+I started with ideas from https://codepen.io/jorgebucaran/pen/ZeByKv, https://github.com/loteoo/hyperapp-starter. Then I scrapped those projects and worked in a more wild west approach to explore the basics of Web Components instead of the shades of different frameworks.
 
 ### Extension Ideas
 
-- Presentation for different loading states
+- Better presentation for different loading states
 - Pagination
 - Compression/separation/CI/CD
 - Testing
-- Video player instead of redirect to YouTube for playback
+- More explicit error handling
+- Keyboard shortcuts
+- Embedded video player instead of redirect to YouTube for playback
 - Login
   - Use YouTube API library (`<script src="https://apis.google.com/js/api.js"></script>`)
   - Interact with video (Like, Comment)
@@ -31,17 +32,20 @@ Note: I started with ideas from https://codepen.io/jorgebucaran/pen/ZeByKv, http
 ## Components
 
 - Search page
+- Search input
 - Video item
 
 
-# Setup
+## Setup
 
 1. Retrieve a Google API key from https://console.cloud.google.com/apis/credentials.
 1. Copy `config-example.js` to `config.js` and update the `GOOGLE_API_KEY` in it.
 1. Open `app.html` in a browser.
 
+By default, a project's YouTube Data API quota is 10,000 units per day, and each Search call uses 100 units.
 
-# Original Prompt
+
+## Original Prompt
 
 ```
 Exercise details:

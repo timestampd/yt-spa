@@ -1,0 +1,352 @@
+{
+    "kind": "youtube#searchListResponse",
+    "etag": "nZcw-d4o9AovOOKeMrSoI9Eh14c",
+    "nextPageToken": "CAoQAA",
+    "regionCode": "US",
+    "pageInfo": {
+        "totalResults": 9161,
+        "resultsPerPage": 10
+    },
+    "items": [
+        {
+        "kind": "youtube#searchResult",
+        "etag": "oxLSEnpZAG4MWwJZpnrx-QeRBvQ",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "RWa5R8kleEA"
+        },
+        "snippet": {
+            "publishedAt": "2008-04-05T00:19:24Z",
+            "channelId": "UCnWqJYlE6Xs_mjPIaM3rYbA",
+            "title": "77s - Drowning with Land in Sight - Alone Together",
+            "description": "Alone Together We're alone now Just like always And like always I'm feeling so lonely Alone with you We're together So together ...",
+            "thumbnails": {
+            "default": {
+                "url": "https://i.ytimg.com/vi/RWa5R8kleEA/default.jpg",
+                "width": 120,
+                "height": 90
+            },
+            "medium": {
+                "url": "https://i.ytimg.com/vi/RWa5R8kleEA/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+            },
+            "high": {
+                "url": "https://i.ytimg.com/vi/RWa5R8kleEA/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+            }
+            },
+            "channelTitle": "Neamberthal",
+            "liveBroadcastContent": "none",
+            "publishTime": "2008-04-05T00:19:24Z"
+        }
+        },
+        {
+        "kind": "youtube#searchResult",
+        "etag": "ir44C-l1J4Vuo5Q84d_gAwxkX8I",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "IGI18438zYw"
+        },
+        "snippet": {
+            "publishedAt": "2008-04-05T00:11:02Z",
+            "channelId": "UCnWqJYlE6Xs_mjPIaM3rYbA",
+            "title": "77s - Drowning with Land in Sight - The Jig is Up",
+            "description": "The Jig Is Up I am a troubled man Trouble is what I am I am a troubled man And I'll take all you can give me I walk alone Hand in ...",
+            "thumbnails": {
+            "default": {
+                "url": "https://i.ytimg.com/vi/IGI18438zYw/default.jpg",
+                "width": 120,
+                "height": 90
+            },
+            "medium": {
+                "url": "https://i.ytimg.com/vi/IGI18438zYw/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+            },
+            "high": {
+                "url": "https://i.ytimg.com/vi/IGI18438zYw/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+            }
+            },
+            "channelTitle": "Neamberthal",
+            "liveBroadcastContent": "none",
+            "publishTime": "2008-04-05T00:11:02Z"
+        }
+        },
+        {
+        "kind": "youtube#searchResult",
+        "etag": "5zJ5YBJYIoSC7Zo72_1lRlSo2XU",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "Vl62kgpgSpY"
+        },
+        "snippet": {
+            "publishedAt": "2008-04-04T23:37:52Z",
+            "channelId": "UCnWqJYlE6Xs_mjPIaM3rYbA",
+            "title": "77s - Drowning with Land in Sight - Nobody&#39;s Fault but Mine",
+            "description": "Nobody's Fault But Mine (Jimmy Page and Robert Plant - apologies to Blind Willie Johnson) Nobody's fault but mine Nobody's ...",
+            "thumbnails": {
+            "default": {
+                "url": "https://i.ytimg.com/vi/Vl62kgpgSpY/default.jpg",
+                "width": 120,
+                "height": 90
+            },
+            "medium": {
+                "url": "https://i.ytimg.com/vi/Vl62kgpgSpY/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+            },
+            "high": {
+                "url": "https://i.ytimg.com/vi/Vl62kgpgSpY/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+            }
+            },
+            "channelTitle": "Neamberthal",
+            "liveBroadcastContent": "none",
+            "publishTime": "2008-04-04T23:37:52Z"
+        }
+        },
+        {
+        "kind": "youtube#searchResult",
+        "etag": "FxXBoMHLQtpGHNA-3UmZ_PuzdEM",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "P2HxAcEfaKI"
+        },
+        "snippet": {
+            "publishedAt": "2008-04-05T03:05:35Z",
+            "channelId": "UCnWqJYlE6Xs_mjPIaM3rYbA",
+            "title": "77s - Drowning with Land in Sight - Snowblind",
+            "description": "Snowblind I'm snowblind Whooooo snowblind I'm so blind And I don't know what I'm doing It's so bright and so white Won't you ...",
+            "thumbnails": {
+            "default": {
+                "url": "https://i.ytimg.com/vi/P2HxAcEfaKI/default.jpg",
+                "width": 120,
+                "height": 90
+            },
+            "medium": {
+                "url": "https://i.ytimg.com/vi/P2HxAcEfaKI/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+            },
+            "high": {
+                "url": "https://i.ytimg.com/vi/P2HxAcEfaKI/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+            }
+            },
+            "channelTitle": "Neamberthal",
+            "liveBroadcastContent": "none",
+            "publishTime": "2008-04-05T03:05:35Z"
+        }
+        },
+        {
+        "kind": "youtube#searchResult",
+        "etag": "Arp9Wfvi5bJGYjuk6weE9qAsafY",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "CHS1y-303oY"
+        },
+        "snippet": {
+            "publishedAt": "2008-04-05T00:00:18Z",
+            "channelId": "UCnWqJYlE6Xs_mjPIaM3rYbA",
+            "title": "77s - Drowning with Land in Sight - Cold Cold Night",
+            "description": "Cold Cold Night Well it's raining And I'm out on the ledge Why'd you have to do it? Throw me out Leave me right out on the edge ...",
+            "thumbnails": {
+            "default": {
+                "url": "https://i.ytimg.com/vi/CHS1y-303oY/default.jpg",
+                "width": 120,
+                "height": 90
+            },
+            "medium": {
+                "url": "https://i.ytimg.com/vi/CHS1y-303oY/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+            },
+            "high": {
+                "url": "https://i.ytimg.com/vi/CHS1y-303oY/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+            }
+            },
+            "channelTitle": "Neamberthal",
+            "liveBroadcastContent": "none",
+            "publishTime": "2008-04-05T00:00:18Z"
+        }
+        },
+        {
+        "kind": "youtube#searchResult",
+        "etag": "GV_7rcQLZ4a6eVxuzpAejxb-woc",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "TeBWPgcKBJg"
+        },
+        "snippet": {
+            "publishedAt": "2008-04-05T00:05:30Z",
+            "channelId": "UCnWqJYlE6Xs_mjPIaM3rYbA",
+            "title": "77s - Drowning with Land in Sight - Dave&#39;s Blues",
+            "description": "Dave's Blues I've got a feelin' I'll be headin' down for good Got that feelin' I'm never gonna do the things I should I'm caught in this ...",
+            "thumbnails": {
+            "default": {
+                "url": "https://i.ytimg.com/vi/TeBWPgcKBJg/default.jpg",
+                "width": 120,
+                "height": 90
+            },
+            "medium": {
+                "url": "https://i.ytimg.com/vi/TeBWPgcKBJg/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+            },
+            "high": {
+                "url": "https://i.ytimg.com/vi/TeBWPgcKBJg/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+            }
+            },
+            "channelTitle": "Neamberthal",
+            "liveBroadcastContent": "none",
+            "publishTime": "2008-04-05T00:05:30Z"
+        }
+        },
+        {
+        "kind": "youtube#searchResult",
+        "etag": "5C89rZI7UzXPf2pV-dLvGbDRkLk",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "Tou-jb8aWXk"
+        },
+        "snippet": {
+            "publishedAt": "2008-04-05T00:26:03Z",
+            "channelId": "UCnWqJYlE6Xs_mjPIaM3rYbA",
+            "title": "77s - Drowning with Land in Sight - For Crying out Loud",
+            "description": "For Crying Out Loud When it all comes down And it all falls apart And there's no way to win And you're left with a broken heart And ...",
+            "thumbnails": {
+            "default": {
+                "url": "https://i.ytimg.com/vi/Tou-jb8aWXk/default.jpg",
+                "width": 120,
+                "height": 90
+            },
+            "medium": {
+                "url": "https://i.ytimg.com/vi/Tou-jb8aWXk/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+            },
+            "high": {
+                "url": "https://i.ytimg.com/vi/Tou-jb8aWXk/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+            }
+            },
+            "channelTitle": "Neamberthal",
+            "liveBroadcastContent": "none",
+            "publishTime": "2008-04-05T00:26:03Z"
+        }
+        },
+        {
+        "kind": "youtube#searchResult",
+        "etag": "NPeKfN5wRKC3SAxuXzBlPKdLtzQ",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "bzEpicVVt7A"
+        },
+        "snippet": {
+            "publishedAt": "2008-04-04T23:39:30Z",
+            "channelId": "UCnWqJYlE6Xs_mjPIaM3rYbA",
+            "title": "77s - Drowning with Land in Sight - Snake",
+            "description": "Snake I'm the path of least resistance I'm a highway wide and clear I'm the French bread in the desert That you'll eat when death ...",
+            "thumbnails": {
+            "default": {
+                "url": "https://i.ytimg.com/vi/bzEpicVVt7A/default.jpg",
+                "width": 120,
+                "height": 90
+            },
+            "medium": {
+                "url": "https://i.ytimg.com/vi/bzEpicVVt7A/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+            },
+            "high": {
+                "url": "https://i.ytimg.com/vi/bzEpicVVt7A/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+            }
+            },
+            "channelTitle": "Neamberthal",
+            "liveBroadcastContent": "none",
+            "publishTime": "2008-04-04T23:39:30Z"
+        }
+        },
+        {
+        "kind": "youtube#searchResult",
+        "etag": "iKuaRh7b5hI25MyFmQ-zurA7Y6s",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "W-YFUvqwuLk"
+        },
+        "snippet": {
+            "publishedAt": "2008-04-05T00:05:30Z",
+            "channelId": "UCnWqJYlE6Xs_mjPIaM3rYbA",
+            "title": "77s - Drowning with Land in Sight - Film at 11",
+            "description": "Film At 11 No control No way to have and hold you now You're blowin' in the wind, my friend Like a kite without a string You ...",
+            "thumbnails": {
+            "default": {
+                "url": "https://i.ytimg.com/vi/W-YFUvqwuLk/default.jpg",
+                "width": 120,
+                "height": 90
+            },
+            "medium": {
+                "url": "https://i.ytimg.com/vi/W-YFUvqwuLk/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+            },
+            "high": {
+                "url": "https://i.ytimg.com/vi/W-YFUvqwuLk/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+            }
+            },
+            "channelTitle": "Neamberthal",
+            "liveBroadcastContent": "none",
+            "publishTime": "2008-04-05T00:05:30Z"
+        }
+        },
+        {
+        "kind": "youtube#searchResult",
+        "etag": "OFukeGv-nDepnHGA41me2DooQWA",
+        "id": {
+            "kind": "youtube#video",
+            "videoId": "G0-vTUGe7dk"
+        },
+        "snippet": {
+            "publishedAt": "2019-03-07T22:35:12Z",
+            "channelId": "UC-MhPvk_MwtQnH-l4iIdeIQ",
+            "title": "Alone Together",
+            "description": "Provided to YouTube by Catapult Reservatory, LLC Alone Together · 77s Drowning with Land in Sight (Deluxe Remaster) ℗ 2018 ...",
+            "thumbnails": {
+            "default": {
+                "url": "https://i.ytimg.com/vi/G0-vTUGe7dk/default.jpg",
+                "width": 120,
+                "height": 90
+            },
+            "medium": {
+                "url": "https://i.ytimg.com/vi/G0-vTUGe7dk/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+            },
+            "high": {
+                "url": "https://i.ytimg.com/vi/G0-vTUGe7dk/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+            }
+            },
+            "channelTitle": "77s - Topic",
+            "liveBroadcastContent": "none",
+            "publishTime": "2019-03-07T22:35:12Z"
+        }
+        }
+    ]
+}
